@@ -1,0 +1,27 @@
+{
+    "name": "fwext/yii2-audit-trail-behavior",
+
+    "type": "yii2-extension",
+
+    "description": "The audit trail behavior for the Yii framework",
+    "keywords": ["yii2", "user", "audit", "audit trail", "helper", "behavior"],
+    "license": "BSD-3-Clause",
+    "support": {
+        "source": "https://github.com/faenor48/yii2-audit-trail-behavior"
+    },
+    "authors": [
+        {
+            "name": "Ivan Lutokhin",
+            "email": "ivan.lutokhin@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "fwext\\AuditTrail\\": ""
+        }
+    }
+}
