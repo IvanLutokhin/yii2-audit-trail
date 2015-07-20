@@ -39,6 +39,13 @@ class AuditTrailBehavior extends \yii\base\Behavior {
 
     public $model = "\\fwext\\AuditTrail\\AuditTrail";
 
+    protected $oldAttributes = [];
+
+    public function getOldAttributes()
+    {
+        return $this->oldAttributes;
+    }
+
     public function init()
     {
         $this->userId = (!Yii::$app->user->isGuest) ? Yii::$app->user->identity->getId() : null;
@@ -47,10 +54,16 @@ class AuditTrailBehavior extends \yii\base\Behavior {
     public function events()
     {
         return [
+            ActiveRecord::EVENT_AFTER_FIND      => 'afterFind',
             ActiveRecord::EVENT_AFTER_INSERT    => 'afterInsert',
             ActiveRecord::EVENT_AFTER_UPDATE    => 'afterUpdate',
             ActiveRecord::EVENT_AFTER_DELETE    => 'afterDelete',
         ];
+    }
+
+    public function afterFind($event)
+    {
+        $this->oldAttributes = $this->owner->getAttributes();
     }
 
     public function afterInsert($event)
@@ -82,7 +95,7 @@ class AuditTrailBehavior extends \yii\base\Behavior {
 
     public function audit($insert)
     {
-        $oldAttributes = $this->owner->getOldAttributes();
+        $oldAttributes = $this->getOldAttributes();
 
         $newAttributes = $this->owner->getAttributes();
 

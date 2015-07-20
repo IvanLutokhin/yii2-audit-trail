@@ -40,9 +40,6 @@ class AuditTrail extends \yii\db\ActiveRecord
         return [
             [['user_id', 'user_ip', 'action_type', 'timestamp'], 'integer'],
             [['action_type', 'object', 'object_id', 'timestamp'], 'required'],
-            [['value_old', 'value_new'], 'string'],
-            [['object'], 'string', 'max' => 255],
-            [['object_id', 'field'], 'string', 'max' => 64]
         ];
     }
 
