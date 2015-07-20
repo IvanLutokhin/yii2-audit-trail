@@ -120,7 +120,7 @@ class AuditTrailBehavior extends \yii\base\Behavior {
                 continue;
             }
 
-            if($attribute !== $value) {
+            if(strcasecmp($value, $attribute) !== 0) {
                 $this->save($insert ? self::ACTION_SET : self::ACTION_UPDATE, $key, $value, $attribute);
             }
         }

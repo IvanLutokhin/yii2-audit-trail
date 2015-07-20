@@ -24,6 +24,16 @@ use Yii;
  */
 class AuditTrail extends \yii\db\ActiveRecord
 {
+    public static function getActionList()
+    {
+        return [
+            AuditTrailBehavior::ACTION_INSERT => 'СОЗДАНИЕ',
+            AuditTrailBehavior::ACTION_SET => 'УСТАНОВКА',
+            AuditTrailBehavior::ACTION_UPDATE => 'ОБНОВЛЕНИЕ',
+            AuditTrailBehavior::ACTION_DELETE => 'УДАЛЕНИЕ',
+        ];
+    }
+
     /**
      * @inheritdoc
      */
