@@ -132,7 +132,7 @@ class AuditTrailBehavior extends \yii\base\Behavior {
         $actionAudit->user_id = $this->userId;
         $actionAudit->user_ip = ip2long(Yii::$app->getRequest()->getUserIP());
         $actionAudit->action_type = $actionType;
-        $actionAudit->object = $this->owner->className();
+        $actionAudit->object = is_null($this->object) ? $this->owner->className() : $this->object;
         $actionAudit->object_id = $this->owner->getPrimaryKey();
         $actionAudit->field = $field;
         $actionAudit->value_old = $valueOld;
